@@ -1,31 +1,22 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./App.css";
 import { FaBars, FaKeyboard, FaTimes } from "react-icons/fa";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Layout from "./components/Layout";
+import Blogs from "./components/Blogs";
+import Home from "./components/Home";
 
 const App = () => {
-  const ref = useRef();
-
-  const showNavbar = () => {
-    ref.current.classList.toggle("responsive_nav");
-  };
   return (
-    <>
-      <header>
-        <h2>log</h2>
-        <nav ref={ref}>
-          <a href="/#">Home</a>
-          <a href="/#">Home</a>
-          <a href="/#">Home</a>
-          <a href="/#">Home</a>
-          <button className="nav-btn nav-close-btn" onClick={showNavbar}>
-            <FaTimes />
-          </button>
-        </nav>
-        <button className="nav-btn nav-close-btn" onClick={showNavbar}>
-          <FaBars />
-        </button>
-      </header>
-    </>
+    <Router>
+      <Layout>
+        <Switch>
+          <Route exact path="/home" render={() => <Home />} />
+          <Route exact path="/blogs" render={() => <Blogs />} />
+          {/* Other routes */}
+        </Switch>
+      </Layout>
+    </Router>
   );
 };
 
